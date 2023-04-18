@@ -1,5 +1,9 @@
 class ListsController < ApplicationController
 
+def new
+   @list = List.new
+   
+end
 
 def index
   @lists = List.all
@@ -15,5 +19,9 @@ def show
     @list = List.find(params[:id])  
 end
 
-
+ private
+  # ストロングパラメータ
+  def list_params
+    params.require(:list).permit(:title, :body)
+  end
 end
